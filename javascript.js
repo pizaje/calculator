@@ -1,8 +1,15 @@
-const { FileContentWriter } = require("istanbul-lib-report");
-
 let number1 = 0;
 let operator = "";
 let number2 = 0;
+let buttons = document.querySelectorAll("div.number");
+console.log(document.querySelector("div#resultscreen").textContent);
+
+for (button of buttons) {
+  let content = button;
+  button.addEventListener("click", () => {
+    document.querySelector("div#inputscreen").textContent += content.textContent;
+  });
+}
 
 function add(num1, num2) {
   return num1 + num2;
@@ -32,6 +39,3 @@ function operate(num1, op, num2) {
       return divide(num1, num2);
   };
 }
-
-console.log(operate(4, "/", 5));
-document.querySelector("#inputscreen").textContent = "noice";
