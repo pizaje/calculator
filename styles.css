@@ -15,8 +15,8 @@ body {
   border: 2px solid #444;
   border-radius: 30px;
   background-color: #999;
-  width: 550px;
-  height: 800px;
+  width: 400px;
+  height: 710px;
   margin: 64px;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ body {
 #inputscreen {
   border-radius: 10px 10px 0 0;
   background-color: #33eeff;
-  width: 475px;
+  width: 350px;
   height: 70px;
   margin: 35px 0 0 0;
 }
@@ -34,22 +34,25 @@ body {
 #resultscreen {
   border-radius: 0 0 10px 10px;
   background-color: #33eeff;
-  width: 475px;
+  width: 350px;
   height: 125px;
 }
 
 #numpad {
-  border: 1px solid black;
-  width: 475px;
-  height: 500px;
+  width: 325px;
+  height: 420px;
   margin: 35px 0 0 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .button {
   border: 1px solid black;
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
 }
+  #zero {
+    width: 151px;
+  }
