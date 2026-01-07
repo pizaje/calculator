@@ -34,3 +34,4 @@ function operate(num1, op, num2) {
 }
 
 console.log(operate(4, "/", 5));
+document.querySelector("#inputscreen").textContent = "noice";
