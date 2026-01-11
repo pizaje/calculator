@@ -10,8 +10,9 @@ let input = document.querySelector("div#inputscreen");
 let result = document.querySelector("div#resultscreen");
 
 function equals () {
-  console.log("equals");
-  result.textContent = input.textContent;
+  let values = input.textContent.split(operator);
+  console.log(`${values[0]} ${operator} ${values[1]}`)
+  result.textContent = operate(parseFloat(values[0]), operator, parseFloat(values[1]));
   input.textContent = "";
   number1 = null;
   operator = "";
@@ -78,6 +79,13 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
+function raise(num1, num2) {
+  console.log(num1);
+  console.log(num2);
+  console.log(Math.pow(num1, num2));
+  return Math.pow(num1, num2);
+}
+
 function operate(num1, op, num2) {
   switch(op) {
     case "+":
@@ -88,5 +96,7 @@ function operate(num1, op, num2) {
       return mult(num1, num2);
     case "/":
       return divide(num1, num2);
+    case "^":
+      return raise(num1, num2);
   };
 }
