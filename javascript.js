@@ -43,7 +43,6 @@ for (button of signs) {
   }
 )};
 
-
 for (button of keys) {
   let content = button;
   button.addEventListener("click", () => {
@@ -56,7 +55,8 @@ for (button of numbers) {
     if (operatorinput && !button.classList.contains("operator")) {
       hasOperated = true;
     }
-})};
+  })
+};
 
 ac.addEventListener("click", () => {
   operator = "";
@@ -65,6 +65,18 @@ ac.addEventListener("click", () => {
   input.textContent = "";
   result.textContent = "0";
 });
+
+backspace.addEventListener("click", () => {
+  inputlen = input.textContent.length;
+  back = input.textContent.slice(0, inputlen - 1);
+  deleted = input.textContent.slice(inputlen - 1, inputlen);
+  if (deleted === "+" || deleted === "-" || deleted === "*" || deleted === "/" || deleted === "^") {
+    operator = "";
+    operatorinput = false;
+    hasOperated = false;
+  }
+  input.textContent = back;
+})
 /*
 Pass a number, an operator, and a second number to a function
 
