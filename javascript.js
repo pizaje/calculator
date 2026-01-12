@@ -17,7 +17,7 @@ function equals () {
   let values = input.textContent.split(operator);
   if (((values[0] != "" && operator === "") || (operator != "" && values[1] != "")) && completedecimal) {
     results = operate(parseFloat(values[0]), operator, parseFloat(values[1]));
-    result.textContent = Math.round((results + Number.EPSILON) * 10000) / 10000
+    result.textContent = Math.round((results) * 10000) / 10000
     input.textContent = "";
     operator = "";
     hasOperated = false;
@@ -32,8 +32,6 @@ function equals () {
 for (button of signs) {
   let content = button;
   button.addEventListener("click", () => {
-  console.log(hasdecimal);
-  console.log(completedecimal);
     if (operatorinput && hasOperated === true && completedecimal) {
       equals();
       input.textContent = result.textContent;
