@@ -5,16 +5,23 @@ let numbers = document.querySelectorAll("div.number");
 let signs = document.querySelectorAll("div.operator");
 let keys = document.querySelectorAll("div.button");
 let equal = document.querySelector("div#equal");
+let backspace = document.querySelector("div#delete");
+let ac = document.querySelector("div#ac");
 let input = document.querySelector("div#inputscreen");
 let result = document.querySelector("div#resultscreen");
 
 function equals () {
   let values = input.textContent.split(operator);
-  result.textContent = operate(parseFloat(values[0]), operator, parseFloat(values[1]));
-  input.textContent = "";
-  operator = "";
-  hasOperated = false;
-  operatorinput = false;
+  if ((values[0] != "" && operator === "") || (operator != "" && values[1] != "")) {
+    result.textContent = operate(parseFloat(values[0]), operator, parseFloat(values[1]));
+    input.textContent = "";
+    operator = "";
+    hasOperated = false;
+    operatorinput = false;
+    equal.style.color = "#000";
+  } else {
+    equal.style.color = "#922";
+  }
 };
 
 for (button of signs) {
@@ -25,8 +32,7 @@ for (button of signs) {
       input.textContent = result.textContent;
     }
     if (!operatorinput && input.textContent === "") {
-      console.log("");
-      input.textContent = 0;
+      input.textContent = "0";
     };
     operator = content.textContent;
     operatorless = input.textContent.slice(0, input.textContent.length - 1);
@@ -51,6 +57,14 @@ for (button of numbers) {
       hasOperated = true;
     }
 })};
+
+ac.addEventListener("click", () => {
+  operator = "";
+  operatorinput = false;
+  hasOperated = false;
+  input.textContent = "";
+  result.textContent = "0";
+});
 /*
 Pass a number, an operator, and a second number to a function
 
