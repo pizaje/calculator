@@ -1,7 +1,6 @@
-let number1 = null;
 let operator = "";
   let operatorinput = false;
-let number2 = null;
+let hasOperated = false;
 let numbers = document.querySelectorAll("div.number");
 let signs = document.querySelectorAll("div.operator");
 let keys = document.querySelectorAll("div.button");
@@ -14,23 +13,22 @@ function equals () {
   console.log(`${values[0]} ${operator} ${values[1]}`)
   result.textContent = operate(parseFloat(values[0]), operator, parseFloat(values[1]));
   input.textContent = "";
-  number1 = null;
   operator = "";
-  number2 = null;
+  hasOperated = false;
   operatorinput = false;
 };
 
 for (button of signs) {
   let content = button;
   button.addEventListener("click", () => {
-    number1 = input.textContent;
-    operator = content.textContent;
-    operatorless = input.textContent.slice(0, input.textContent.length - 1);
-    if (operatorinput && number2 === null) {
-      input.textContent = operatorless;
-    } else if (operatorinput && number2 != null) {
+    if (operatorinput && hasOperated === true) {
       equals();
       input.textContent = result.textContent;
+    }
+    operator = content.textContent;
+    operatorless = input.textContent.slice(0, input.textContent.length - 1);
+    if (operatorinput && hasOperated === false) {
+      input.textContent = operatorless;
     }
     operatorinput = true;
   }
@@ -41,12 +39,16 @@ for (button of keys) {
   let content = button;
   button.addEventListener("click", () => {
     input.textContent += content.textContent;
-    if (operatorinput) {
-      number2 = 0;
-      number2 += content.textContent;
-    }
   });
-}
+};
+
+for (button of numbers) {
+  let content = button;
+  button.addEventListener("click", () => {
+    if (operatorinput && !button.classList.contains("operator")) {
+      hasOperated = true;
+    }
+})};
 /*
 Pass a number, an operator, and a second number to a function
 
@@ -56,7 +58,7 @@ Pass a number, an operator, and a second number to a function
 - If the user inputs an operator, set number1 = the number on the input and operator to the
 selected operator
   - If another operator is selected again, replace the operator with the new one
-- After = is selected, set all that's to the right of the operator to number2
+- After = is selected, set all that's to the right of the operator to hasOperated
 - Use the correct operation function on these values
 - Set all variables to 0, input screen to "", and result screen to 0 when AC is pressed
 */
@@ -80,9 +82,6 @@ function divide(num1, num2) {
 }
 
 function raise(num1, num2) {
-  console.log(num1);
-  console.log(num2);
-  console.log(Math.pow(num1, num2));
   return Math.pow(num1, num2);
 }
 
