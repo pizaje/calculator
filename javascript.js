@@ -10,7 +10,6 @@ let result = document.querySelector("div#resultscreen");
 
 function equals () {
   let values = input.textContent.split(operator);
-  console.log(`${values[0]} ${operator} ${values[1]}`)
   result.textContent = operate(parseFloat(values[0]), operator, parseFloat(values[1]));
   input.textContent = "";
   operator = "";
@@ -25,6 +24,10 @@ for (button of signs) {
       equals();
       input.textContent = result.textContent;
     }
+    if (!operatorinput && input.textContent === "") {
+      console.log("");
+      input.textContent = 0;
+    };
     operator = content.textContent;
     operatorless = input.textContent.slice(0, input.textContent.length - 1);
     if (operatorinput && hasOperated === false) {
@@ -43,7 +46,6 @@ for (button of keys) {
 };
 
 for (button of numbers) {
-  let content = button;
   button.addEventListener("click", () => {
     if (operatorinput && !button.classList.contains("operator")) {
       hasOperated = true;
@@ -78,7 +80,11 @@ function mult(num1, num2) {
 }
 
 function divide(num1, num2) {
-  return num1 / num2;
+  if (num2 != 0) {
+    return num1 / num2;
+  } else {
+    return "No.";
+  }
 }
 
 function raise(num1, num2) {
@@ -97,5 +103,11 @@ function operate(num1, op, num2) {
       return divide(num1, num2);
     case "^":
       return raise(num1, num2);
+    case "":
+      if (input.textContent != "") {
+        return input.textContent;
+      } else {
+        return 0;
+      }
   };
-}
+};
