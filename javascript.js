@@ -17,7 +17,12 @@ function equals () {
   let values = input.textContent.split(operator);
   if (((values[0] != "" && operator === "") || (operator != "" && values[1] != "")) && completedecimal) {
     results = operate(parseFloat(values[0]), operator, parseFloat(values[1]));
-    result.textContent = Math.round((results) * 10000) / 10000
+    console.log((Math.round((results) * 10000) / 10000).toExponential(4), 4);
+    if (results > 99999999) {
+      result.textContent = (Math.round((results) * 10000) / 10000).toExponential(3)
+    } else {
+      result.textContent = Math.round((results) * 10000) / 10000
+    };
     input.textContent = "";
     operator = "";
     hasOperated = false;
